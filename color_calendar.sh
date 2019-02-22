@@ -14,6 +14,9 @@ days=( "Sun" "Mon" "Tue" "Wed" "Thu" "Fri" "Sat" )
 
 #Figure out if it's a leap year
 #leap year if divisible by 4, or if divisible by 100 and by 400
+#I found this code by googling, and I still haven't tried to simplify
+#the logic but I feel there must be a simpler, more concise way of coding
+#this
 isleap='false'
 
 if [ `expr $year % 4` != 0 ] ; then
