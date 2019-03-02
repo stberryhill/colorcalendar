@@ -2,9 +2,19 @@
 
 #Output to console in color
 RED='\033[0;31m'
+REDB='\033[1;31m'
+PINK='\033[0;35m'
+PINKB='\033[1;35m'
 GREEN='\033[0;32m'
+GREENB='\033[1;32m'
 BROWN='\033[0;33m'
+YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
+BLUEB='\033[1;34m'
+CYAN='\033[0;36m'
+CYANB='\033[1;36m'
+WHITE='\033[0;37m'
+WHITEB='\033[1;37m'
 CLEAR='\033[0m'
 year=`date '+%Y'`
 month=`date '+%B'`
@@ -14,9 +24,6 @@ days=( "Sun" "Mon" "Tue" "Wed" "Thu" "Fri" "Sat" )
 
 #Figure out if it's a leap year
 #leap year if divisible by 4, or if divisible by 100 and by 400
-#I found this code by googling, and I still haven't tried to simplify
-#the logic but I feel there must be a simpler, more concise way of coding
-#this
 isleap='false'
 
 if [ `expr $year % 4` != 0 ] ; then
@@ -32,11 +39,11 @@ else
 fi
 #echo -e
 echo
-echo "\t${BLUE}$month${CLEAR} ${BROWN}$year${CLEAR}"
+echo "\t${BLUEB}$month${CLEAR} ${BLUE}$year${CLEAR}"
 for d in ${days[@]}
 do
 	if [ $d == $day ]; then
-		printf "${GREEN}"
+		printf "${GREENB}"
 	fi
 
 	printf "$d ${CLEAR}"
@@ -101,7 +108,7 @@ day1=${days[$day1ref]}
 start=$((0 - $day1ref))
 for (( i=$start; i <= $max; ++i ))
 do
-	if [ $i == $date ]; then
+  if [ $((i)) == $((date)) ]; then
 		printf "${RED}"
 	fi
 
