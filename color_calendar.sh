@@ -15,6 +15,7 @@ CYAN='\033[0;36m'
 CYANB='\033[1;36m'
 WHITE='\033[0;37m'
 WHITEB='\033[1;37m'
+WHITEBACK='\033[1;47m'
 CLEAR='\033[0m'
 year=`date '+%Y'`
 month=`date '+%B'`
@@ -25,7 +26,6 @@ days=( "Sun" "Mon" "Tue" "Wed" "Thu" "Fri" "Sat" )
 #Figure out if it's a leap year
 #leap year if divisible by 4, or if divisible by 100 and by 400
 isleap='false'
-
 if [ `expr $year % 4` != 0 ] ; then
   : 
 elif [ `expr $year % 400` == 0 ] ; then
@@ -37,9 +37,20 @@ else
   #it is a leap year
   isleap='true'
 fi
-#echo -e
+
 echo
-echo "\t${BLUEB}$month${CLEAR} ${BLUE}$year${CLEAR}"
+width=30
+headerraw="╭───$month $year"
+header="╭───${BLUEB}$month${CLEAR} ${BLUE}$year${CLEAR}"
+size=${#headerraw}
+spaces=$((width - size))
+printf "$header"
+for (( i=0; i < $spaces; ++i ))
+do
+  printf "─"
+done
+printf "╮\n│ "
+
 for d in ${days[@]}
 do
 	if [ $d == $day ]; then
@@ -48,7 +59,7 @@ do
 
 	printf "$d ${CLEAR}"
 done
-echo
+printf "│ \n"
 
 #max represents the number of days in this month
 max=31
@@ -101,17 +112,19 @@ if [ $remainder -gt $ref ] ; then
 fi
 
 day1ref=$((ref-remainder))
-
 day1=${days[$day1ref]}
 
 
+printf "│ "	
 start=$((0 - $day1ref))
 for (( i=$start; i <= $max; ++i ))
 do
+  #Highlight today's date in red
   if [ $((i)) == $((date)) ]; then
 		printf "${RED}"
 	fi
 
+  #Make sure that everything is uniformly spaced apart
   if [ "$i" -lt 1 ]; then
     printf "    "
   elif [ "$i" -lt 10 ]; then
@@ -120,15 +133,19 @@ do
 		printf "$i  ${CLEAR}"
 	fi
 
+  #Check to see if it's time to go to a new line
   reali=$((i + day1ref+1))
 	x=`expr $reali % 7`
 	if [ $x == 0 ]; then 
     if [ $reali != 0 ] ; then
-		  echo	
+		  printf "│\n│ "	
     fi
 	fi
 done
+
+#Finish off last two lines of calendar border/box
+printf "                            │\n"
+printf "╰─────────────────────────────╯\n"
 printf "${CLEAR}\n\n"
 
-#echo -e "${GREEN}${day}${CLEAR}, ${BLUE}$month ${BROWN}$date${CLEAR}\n"
 exit 0
