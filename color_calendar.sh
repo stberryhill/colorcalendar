@@ -143,8 +143,14 @@ do
 	fi
 done
 
-#Finish off last two lines of calendar border/box
-printf "                            │\n"
+#Finish off last line of numbers with border
+for (( j=-1; j <= $x; ++j ))
+do
+  printf "   "
+done
+printf " │\n"
+
+#Print bottom of border/box
 printf "╰─────────────────────────────╯\n"
 printf "${CLEAR}\n\n"
 
