@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #Output to console in color
 RED='\033[0;31m'
@@ -15,7 +15,7 @@ CYAN='\033[0;36m'
 CYANB='\033[1;36m'
 WHITE='\033[0;37m'
 WHITEB='\033[1;37m'
-WHITEBACK='\033[1;47m'
+WRITEBACK='\033[1;47m'
 CLEAR='\033[0m'
 year=`date '+%Y'`
 month=`date '+%B'`
@@ -121,10 +121,10 @@ for (( i=$start; i <= $max; ++i ))
 do
   #Highlight today's date in red
   if [ $((i)) == $((date)) ]; then
-		printf "${RED}"
+		printf "${YELLOW}"
 	fi
 
-  #Make sure that everything is uniformly spaced apart
+  #Make sure everything is uniformly spaced apart
   if [ "$i" -lt 1 ]; then
     printf "    "
   elif [ "$i" -lt 10 ]; then
@@ -144,14 +144,15 @@ do
 done
 
 #Finish off last line of numbers with border
-for (( j=-1; j <= $x; ++j ))
+for (( j=$x; j <= 7; ++j ))
 do
   printf "   "
 done
-printf " │\n"
+printf "   │\n"
 
 #Print bottom of border/box
 printf "╰─────────────────────────────╯\n"
 printf "${CLEAR}\n\n"
 
 exit 0
+
