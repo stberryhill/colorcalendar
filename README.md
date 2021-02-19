@@ -1,7 +1,9 @@
 # colorcalendar
 A simple colorful calendar shellscript for unix systems.
 
-Warnning: contains bugs I haven't found time to fix. Also depends on extended ascii character set.
+![alt text](https://github.com/stberryhill/colorcalendar/blob/master/Screenshot.png)
 
-![alt text](https://github.com/stberryhill/colorcalendar/blob/master/calendar_pic.png)
+Relies on unicode characters to draw the smooth border.
 
+## Issues
+* Sometimes the border gets messed up (on certain months). A commit has been made to address this but it hasn't been verified with every month yet.
