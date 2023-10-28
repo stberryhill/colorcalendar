@@ -144,11 +144,11 @@ do
 done
 
 #Finish off last line of numbers with border
-for (( j=$x; j <= 7; ++j ))
+for (( j=$x; j <= 6; j++))
 do
-  printf "   "
+  printf "    "
 done
-printf "   │\n"
+printf "│\n"
 
 #Print bottom of border/box
 printf "╰─────────────────────────────╯\n"
